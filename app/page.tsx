@@ -20,9 +20,12 @@ const HomePage = () => {
       try {
         await axios.post("http://localhost:5000/api/users", {
           userId: user.id,
-          username: user.firstName ?? "" + user.lastName ?? "",
+          firstName: user.firstName ?? "",
+          lastName: user.lastName ?? "",
           email: user.emailAddresses[0]?.emailAddress ?? "",
         });
+
+        console.log("User added to DB");
       } catch (error) {
         console.error("Error saving user to DB", error);
       }
