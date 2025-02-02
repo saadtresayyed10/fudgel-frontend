@@ -43,7 +43,7 @@ const HomePage = () => {
   });
 
   return (
-    <div className="flex justify-center items-center flex-col lg:gap-y-10 w-full min-h-screen">
+    <div className="flex justify-center items-center flex-col gap-y-6 lg:gap-y-10 w-full min-h-screen">
       <Greet />
       <AddTask />
       <FetchTasks />
