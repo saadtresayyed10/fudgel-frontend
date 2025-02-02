@@ -11,6 +11,7 @@ import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect } from "react";
 import AddTask from "./_components/AddTask";
+import FetchTasks from "./_components/FetchTasks";
 
 const HomePage = () => {
   const { user } = useUser();
@@ -19,12 +20,15 @@ const HomePage = () => {
     const saveUser = async (user: User) => {
       if (!user) return;
       try {
-        await axios.post(`${process.env.BACKEND_URL}/users`, {
-          userId: user.id,
-          firstName: user.firstName ?? "",
-          lastName: user.lastName ?? "",
-          email: user.emailAddresses[0]?.emailAddress ?? "",
-        });
+        await axios.post(
+          `https://puzzled-maddi-groven-dcf428ee.koyeb.app/api/users`,
+          {
+            userId: user.id,
+            firstName: user.firstName ?? "",
+            lastName: user.lastName ?? "",
+            email: user.emailAddresses[0]?.emailAddress ?? "",
+          }
+        );
 
         console.log("User added to DB");
       } catch (error) {
@@ -47,6 +51,7 @@ const HomePage = () => {
       <h2>{user?.emailAddresses[0].emailAddress}</h2>
       <SignOutButton>Logout</SignOutButton>
       <AddTask />
+      <FetchTasks />
     </div>
   );
 };
