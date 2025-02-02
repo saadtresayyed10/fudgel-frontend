@@ -1,25 +1,23 @@
+import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between items-center bg-white text-black w-full lg:px-10 px-6 py-3 lg:py-4">
+    <div className="flex justify-between items-center bg-white text-black w-full lg:px-20 px-6 py-3 lg:py-8 font-hagrid">
       <Link href="/">
-        <h1 className="text-4xl font-semibold">Fudgel</h1>
+        <h1 className="lg:text-6xl font-semibold">Fudgel</h1>
       </Link>
 
       <SignedOut>
         <SignInButton mode="modal">
-          <button className="px-6 py-2 bg-black text-white rounded-full shadow-md">
+          <Button className="px-6 py-3 bg-lime-400 text-black rounded-lg shadow-md border-black border-2">
             Login
-          </button>
+          </Button>
         </SignInButton>
       </SignedOut>
       <SignedIn>
         <div className="flex justify-center items-center lg:gap-x-10 gap-x-6">
-          <Link href="/addTask">
-            <h4 className="hover:underline underline-offset-2">Add Task</h4>
-          </Link>
           <UserButton />
         </div>
       </SignedIn>

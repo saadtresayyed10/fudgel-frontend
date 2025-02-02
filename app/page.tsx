@@ -10,6 +10,7 @@ interface User {
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect } from "react";
+import Greet from "./_components/Greet";
 
 const HomePage = () => {
   const { user } = useUser();
@@ -40,7 +41,9 @@ const HomePage = () => {
   });
 
   return (
-    <div className="flex justify-center items-center flex-col w-full min-h-screen"></div>
+    <div className="flex justify-center items-center flex-col w-full min-h-screen">
+      <Greet />
+    </div>
   );
 };
 
