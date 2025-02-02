@@ -7,11 +7,9 @@ interface User {
   emailAddresses: { emailAddress: string }[];
 }
 
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect } from "react";
-import AddTask from "./_components/AddTask";
-import FetchTasks from "./_components/FetchTasks";
 
 const HomePage = () => {
   const { user } = useUser();
@@ -42,17 +40,7 @@ const HomePage = () => {
   });
 
   return (
-    <div>
-      <SignInButton>Login</SignInButton>
-      <h1>{user?.id}</h1>
-      <h1>
-        {user?.firstName} {user?.lastName}
-      </h1>
-      <h2>{user?.emailAddresses[0].emailAddress}</h2>
-      <SignOutButton>Logout</SignOutButton>
-      <AddTask />
-      <FetchTasks />
-    </div>
+    <div className="flex justify-center items-center flex-col w-full min-h-screen"></div>
   );
 };
 
