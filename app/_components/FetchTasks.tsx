@@ -9,8 +9,7 @@ interface Task {
 
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
-import { Pen, PlusCircle, Trash } from "lucide-react";
-import Link from "next/link";
+import { Pen, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const FetchTasks = () => {
@@ -34,7 +33,7 @@ const FetchTasks = () => {
     getTasksForAUser();
   }, [user]);
   return (
-    <div className="flex justify-center items-center flex-col lg:gap-y-6 bg-white text-black font-hagrid">
+    <div className="flex justify-center items-center flex-col lg:gap-y-6 bg-white text-black font-hagrid mb-10">
       <div className="flex justify-between items-center w-full">
         {tasks.length === 0 ? (
           <h2 className="text-3xl capitalize font-semibold">
@@ -43,12 +42,6 @@ const FetchTasks = () => {
         ) : (
           <h2 className="text-3xl capitalize font-semibold">List of Tasks</h2>
         )}
-        <Link
-          className="flex items-center justify-center gap-x-2 font-semibold hover:underline"
-          href="addTask"
-        >
-          Add Task <PlusCircle className="w-4 h-4" />
-        </Link>
       </div>
       <div className="grid lg:grid-cols-3 lg:gap-20">
         {tasks.map((task, idx) => (

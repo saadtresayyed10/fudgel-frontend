@@ -1,7 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
 const AddTask = () => {
@@ -32,34 +35,40 @@ const AddTask = () => {
       console.log("Error adding task: ", error);
     } finally {
       setLoading(false);
+      location.reload();
     }
   };
 
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center items-center w-full flex-col lg:gap-y-6 font-hagrid bg-white text-black">
+      <h2 className="text-3xl capitalize font-semibold">Type to add task</h2>
       <form
         onSubmit={handleSubmit}
         className="flex justify-center items-center flex-col gap-y-6"
       >
-        <input
+        <Input
           type="text"
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
           placeholder="Title:"
         />
-        <input
+        <Input
           type="text"
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
           placeholder="Description:"
         />
-        <button
+        <Button
           disabled={loading}
           type="submit"
-          className="px-6 py-2 bg-blue-500 text-white rounded-lg shadow-md"
+          className="px-6 py-2 bg-transparent text-black hover:text-white rounded-lg border-2 border-black"
         >
-          {loading ? <p className="animate-pulse">...</p> : <p>Add Task</p>}
-        </button>
+          {loading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <p>Add Task</p>
+          )}
+        </Button>
       </form>
     </div>
   );

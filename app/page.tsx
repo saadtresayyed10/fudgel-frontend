@@ -12,6 +12,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import Greet from "./_components/Greet";
 import FetchTasks from "./_components/FetchTasks";
+import AddTask from "./_components/AddTask";
 
 const HomePage = () => {
   const { user } = useUser();
@@ -44,6 +45,7 @@ const HomePage = () => {
   return (
     <div className="flex justify-center items-center flex-col lg:gap-y-10 w-full min-h-screen">
       <Greet />
+      <AddTask />
       <FetchTasks />
     </div>
   );
