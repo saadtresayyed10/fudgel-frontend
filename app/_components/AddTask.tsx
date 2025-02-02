@@ -16,11 +16,14 @@ const AddTask = () => {
 
     try {
       setLoading(true);
-      await axios.post(`${process.env.BACKEND_URL}/tasks`, {
-        taskTitle: taskTitle,
-        taskDescription: taskDescription,
-        userId: user.id,
-      });
+      await axios.post(
+        `https://puzzled-maddi-groven-dcf428ee.koyeb.app/api/tasks`,
+        {
+          taskTitle: taskTitle,
+          taskDescription: taskDescription,
+          userId: user.id,
+        }
+      );
 
       console.log(`Task added to user: ${user.fullName}`);
       setTaskTitle("");
@@ -42,11 +45,13 @@ const AddTask = () => {
           type="text"
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
+          placeholder="Title:"
         />
         <input
           type="text"
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
+          placeholder="Description:"
         />
         <button
           disabled={loading}

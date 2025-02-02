@@ -10,6 +10,7 @@ interface User {
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect } from "react";
+import AddTask from "./_components/AddTask";
 
 const HomePage = () => {
   const { user } = useUser();
@@ -45,6 +46,7 @@ const HomePage = () => {
       </h1>
       <h2>{user?.emailAddresses[0].emailAddress}</h2>
       <SignOutButton>Logout</SignOutButton>
+      <AddTask />
     </div>
   );
 };
