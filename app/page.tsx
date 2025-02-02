@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect } from "react";
 import Greet from "./_components/Greet";
+import FetchTasks from "./_components/FetchTasks";
 
 const HomePage = () => {
   const { user } = useUser();
@@ -41,8 +42,9 @@ const HomePage = () => {
   });
 
   return (
-    <div className="flex justify-center items-center flex-col w-full min-h-screen">
+    <div className="flex justify-center items-center flex-col lg:gap-y-10 w-full min-h-screen">
       <Greet />
+      <FetchTasks />
     </div>
   );
 };

@@ -9,6 +9,8 @@ interface Task {
 
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
+import { Pen, PlusCircle, Trash } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const FetchTasks = () => {
@@ -32,19 +34,43 @@ const FetchTasks = () => {
     getTasksForAUser();
   }, [user]);
   return (
-    <div>
-      {tasks.map((task, idx) => (
-        <div key={idx}>
-          <p>{task.taskTitle}</p>
-          <p>{task.taskDescription}</p>
-          <p>{task.taskId}</p>
-          <p>{task.userId}</p>
-          <div className="flex justify-center items-center gap-x-16">
-            <p>Update</p>
-            <p>Delete</p>
+    <div className="flex justify-center items-center flex-col lg:gap-y-6 bg-white text-black font-hagrid">
+      <div className="flex justify-between items-center w-full">
+        {tasks.length === 0 ? (
+          <h2 className="text-3xl capitalize font-semibold">
+            Add your first task
+          </h2>
+        ) : (
+          <h2 className="text-3xl capitalize font-semibold">List of Tasks</h2>
+        )}
+        <Link
+          className="flex items-center justify-center gap-x-2 font-semibold hover:underline"
+          href="addTask"
+        >
+          Add Task <PlusCircle className="w-4 h-4" />
+        </Link>
+      </div>
+      <div className="grid lg:grid-cols-3 lg:gap-20">
+        {tasks.map((task, idx) => (
+          <div
+            className="flex justify-start items-start flex-col bg-neutral-900 text-white lg:p-10 shadow-md rounded-lg border-2 border-black lg:gap-y-2"
+            key={idx}
+          >
+            <h4 className="lg:text-2xl font-semibold capitalize">
+              Title: {task.taskTitle}
+            </h4>
+            <p className="lg:text-sm capitalize">{task.taskDescription}.</p>
+            <div className="flex justify-between items-center w-full lg:mt-6">
+              <button>
+                <Pen className="w-4 h-4" />
+              </button>
+              <button>
+                <Trash className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
