@@ -9,8 +9,9 @@ interface Task {
 
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
-import { Pen, Trash } from "lucide-react";
+import { Pen } from "lucide-react";
 import { useEffect, useState } from "react";
+import DeleteTask from "./DeleteTask";
 
 const FetchTasks = () => {
   const { user } = useUser();
@@ -57,9 +58,7 @@ const FetchTasks = () => {
               <button>
                 <Pen className="w-4 h-4" />
               </button>
-              <button>
-                <Trash className="w-4 h-4" />
-              </button>
+              <DeleteTask taskId={task.taskId} />
             </div>
           </div>
         ))}
