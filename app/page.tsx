@@ -18,7 +18,7 @@ const HomePage = () => {
     const saveUser = async (user: User) => {
       if (!user) return;
       try {
-        await axios.post("http://localhost:5000/api/users", {
+        await axios.post(`${process.env.BACKEND_URL}/users`, {
           userId: user.id,
           firstName: user.firstName ?? "",
           lastName: user.lastName ?? "",
